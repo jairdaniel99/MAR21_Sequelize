@@ -8,7 +8,7 @@ const Student = require("./models/student");
 
 // test the connection to the database
 sequelize
-  .authenticate()
+  .sync() // sync() will create the table if it doesn't exist
   .then(() => console.log("connected"))
   .catch((error) => console.log(error));
 

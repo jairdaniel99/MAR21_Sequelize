@@ -2,14 +2,12 @@
 const Sequelize = require("sequelize");
 // import our instance of sequelize
 const sequelize = require("../config");
-// import course model
-const Course = require("./course");
 
 // create a model for the student table
 // sequalize will automatically create a table called students
 // we want to avoid the automatic pluralization of studen
-const Student = sequelize.define(
-  "Student",
+const Course = sequelize.define(
+  "Course",
   {
     id: {
       type: Sequelize.INTEGER,
@@ -20,26 +18,10 @@ const Student = sequelize.define(
     name: {
       type: Sequelize.STRING,
     },
-    grade: {
-      type: Sequelize.STRING,
-    },
-    age: {
-      type: Sequelize.FLOAT,
-    },
   },
   {
     timestamps: false,
   }
 );
-// define hasMany relation
-Student.hasMany(Course, {
-  foreignKey: "student_id",
-  onDelete: "CASCADE",
-});
 
-// hasMany needs a belongsTo to work!
-Course.belongsTo(Student, {
-  foreignKey: "student_id",
-});
-
-module.exports = Student;
+module.exports = Course;
