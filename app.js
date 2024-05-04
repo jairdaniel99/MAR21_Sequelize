@@ -6,6 +6,8 @@ const sequelize = require("./config");
 const Student = require("./models/student");
 // import student routes
 const studentRoutes = require("./routes/student");
+// import cors middleware
+const cors = require("cors");
 
 // test the connection to the database
 sequelize
@@ -21,6 +23,9 @@ app.use(express.json());
 // form data middleware
 app.use(express.urlencoded({ extended: true }));
 
+// cors middleware
+app.use(cors());
+
 //use student routes
 app.use(studentRoutes);
 
@@ -28,7 +33,7 @@ app.use(studentRoutes);
 // process.env is an object that contains the current environment variables
 //process.env.PORT is an environment that is set by the hosting service
 app.listen(process.env.PORT || 3000, function () {
-  console.log("Server is running on port 3000");
+  console.log("CORS-enabled Server is running on port 3000");
 });
 
 //REFERENCE FOR CAPSTONE

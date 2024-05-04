@@ -57,6 +57,7 @@ router.patch("/students/:id", function (req, res) {
       student.name = req.body.name;
       student.grade = req.body.grade;
       student.age = req.body.age;
+      student.level = req.body.level;
       // save the updates
       student.save();
       req.send(student);
@@ -70,9 +71,9 @@ router.delete("/students/:id", function (req, res) {
   // find the student with given id
   // select * from students where id = *
   Student.findByPk(parseInt(req.params.id))
-    .then((result) => {
-      // if the result is a truthy value
-      if (result) {
+    .then((student) => {
+      // if the student is a truthy value
+      if (student) {
         // delete the student from the database
         student.destroy();
         res.send(student);
